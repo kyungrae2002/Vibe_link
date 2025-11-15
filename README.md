@@ -1,7 +1,7 @@
 
   # Music Preference Visualization (0.0.2)
 
-  This is a code bundle for Music Preference Visualization (0.0.2). The original project is available at https://www.figma.com/design/Ovu58yFd5adVvE1us2YTx5/Music-Preference-Visualization--0.0.2-.
+  This is a code bundle for Music Preference Visualization (0.0.2). The original project is available at https://vibe-link-002.figma.site/
 
   ## Running the code
 
