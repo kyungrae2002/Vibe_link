@@ -54,6 +54,7 @@
       outDir: 'build',
     },
     server: {
+      host: '127.0.0.1', // Force IPv4 to match backend cookie domain
       port: 3000,
       open: true,
     },
