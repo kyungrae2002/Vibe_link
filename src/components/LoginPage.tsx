@@ -44,7 +44,7 @@ export function LoginPage({ onLogin, onJoinShare }: LoginPageProps) {
           // User is authenticated, fetch their data
           const [profileRes, artistsRes] = await Promise.all([
             api.user.getProfile(),
-            api.user.getTopArtists('medium_term'),
+            api.user.getTopArtists({ time_range: 'medium_term' }),
           ]);
 
           const profile = profileRes.data;

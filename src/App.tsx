@@ -64,25 +64,25 @@ function App() {
         {appState === 'login' && (
           <LoginPage onLogin={handleLogin} onJoinShare={handleJoinShare} />
         )}
-        
+
         {appState === 'dashboard' && currentUser && (
-          <Dashboard 
-            user={currentUser} 
+          <Dashboard
+            user={currentUser}
             onCreateShare={handleCreateShare}
             onBack={handleBackToLogin}
           />
         )}
-        
+
         {appState === 'sharing' && currentUser && shareId && (
-          <ShareLink 
+          <ShareLink
             user={currentUser}
             shareId={shareId}
             onBack={handleBackToDashboard}
           />
         )}
-        
+
         {appState === 'matching' && matchData && (
-          <TasteMatch 
+          <TasteMatch
             matchData={matchData}
             onBack={handleBackToDashboard}
           />

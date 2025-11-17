@@ -44,10 +44,11 @@ export const api = {
   // User
   user: {
     getProfile: () => apiClient.get('/api/user/profile'),
-    getTopArtists: (timeRange: 'short_term' | 'medium_term' | 'long_term' = 'medium_term') =>
-      apiClient.get(`/api/user/top-artists?time_range=${timeRange}`),
-    getTopTracks: (timeRange: 'short_term' | 'medium_term' | 'long_term' = 'medium_term') =>
-      apiClient.get(`/api/user/top-tracks?time_range=${timeRange}`),
+    getTopArtists: (params?: { time_range?: 'short_term' | 'medium_term' | 'long_term'; limit?: number }) =>
+      apiClient.get('/api/user/top-artists', { params }),
+    getTopTracks: (params?: { time_range?: 'short_term' | 'medium_term' | 'long_term'; limit?: number }) =>
+      apiClient.get('/api/user/top-tracks', { params }),
+    getUserProfile: (userId: string) => apiClient.get(`/api/user/${userId}/profile`),
   },
 
   // Preference Sharing
@@ -60,10 +61,12 @@ export const api = {
 
   // Playlist
   playlist: {
-    createBlend: () => apiClient.post('/api/playlist/create-blend'),
+    createBlend: (data: { commonArtistIds: string[]; playlistName?: string; playlistDescription?: string }) =>
+      apiClient.post('/api/playlist/create-blend', data),
     getRecommendations: (params?: { seed_artists?: string; limit?: number }) =>
       apiClient.get('/api/playlist/recommendations', { params }),
-    getMyPlaylists: () => apiClient.get('/api/playlist/my-playlists'),
+    getMyPlaylists: (params?: { limit?: number }) =>
+      apiClient.get('/api/playlist/my-playlists', { params }),
     getPlaylist: (playlistId: string) => apiClient.get(`/api/playlist/${playlistId}`),
   },
 

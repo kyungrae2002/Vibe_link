@@ -57,28 +57,95 @@ export interface TopTracksResponse {
   items: SpotifyTrack[];
 }
 
-export interface PreferenceShareResponse {
-  shareId: string;
-  userId: string;
-  topArtists: SpotifyArtist[];
-  topTracks: SpotifyTrack[];
-  createdAt: string;
-  expiresAt: string;
+// Preference Link Types
+export interface CreateLinkResponse {
+  linkId: string;
+  shareUrl: string;
+  message: string;
 }
 
-export interface ComparisonResult {
-  matchPercentage: number;
-  commonArtists: SpotifyArtist[];
-  commonGenres: string[];
-  otherUser: {
+export interface PreferenceLinkDetails {
+  linkId: string;
+  userName: string;
+  userImage: string | null;
+  createdAt: string;
+  topArtistsCount: number;
+}
+
+export interface AcceptLinkResponse {
+  message: string;
+  comparison: ComparisonResult;
+  originalUser: {
     id: string;
-    display_name: string;
-    images: Array<{ url: string }>;
+    name: string;
+  };
+  acceptingUser: {
+    id: string;
+    name: string;
   };
 }
 
+export interface ComparisonResult {
+  commonArtists: SpotifyArtist[];
+  commonCount: number;
+  uniqueToUser1: SpotifyArtist[];
+  uniqueToUser2: SpotifyArtist[];
+  matchPercentage: string;
+  totalUser1Artists: number;
+  totalUser2Artists: number;
+}
+
+export interface MyLinkItem {
+  linkId: string;
+  createdAt: string;
+  acceptedByCount: number;
+  acceptedBy: Array<{
+    userId: string;
+    userName: string;
+    acceptedAt: string;
+  }>;
+}
+
+// Playlist Types
+export interface CreateBlendRequest {
+  commonArtistIds: string[];
+  playlistName?: string;
+  playlistDescription?: string;
+}
+
 export interface BlendPlaylistResponse {
-  playlistId: string;
-  playlistUrl: string;
+  message: string;
+  playlist: {
+    id: string;
+    name: string;
+    url: string;
+    trackCount: number;
+  };
+}
+
+export interface RecommendationsResponse {
   tracks: SpotifyTrack[];
+  seeds: Array<{
+    id: string;
+    type: string;
+  }>;
+}
+
+export interface PlaylistsResponse {
+  items: Array<{
+    id: string;
+    name: string;
+    description: string;
+    images: Array<{
+      url: string;
+      height: number;
+      width: number;
+    }>;
+    tracks: {
+      total: number;
+    };
+    external_urls: {
+      spotify: string;
+    };
+  }>;
 }
